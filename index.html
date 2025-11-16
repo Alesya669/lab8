@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма обратной связи</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Форма обратной связи</h1>
+    <p>Нажмите на кнопку ниже, чтобы открыть форму обратной связи</p>
+    <button class="btn" id="openModalBtn">Открыть форму</button>
+</div>
+
+<div class="modal" id="feedbackModal">
+    <div class="modal-content">
+        <span class="close-btn" id="closeModalBtn">&times;</span>
+        <h2>Форма обратной связи</h2>
+        <form id="feedbackForm">
+            <div class="form-group">
+                <label for="fullName">ФИО *</label>
+                <input type="text" id="fullName" name="fullName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Телефон</label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+
+            <div class="form-group">
+                <label for="organization">Организация</label>
+                <input type="text" id="organization" name="organization">
+            </div>
+
+            <div class="form-group">
+                <label for="message">Сообщение *</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="privacyPolicy" name="privacyPolicy" required>
+                <label for="privacyPolicy">Я согласен с политикой обработки персональных данных *</label>
+            </div>
+
+            <button type="submit" class="submit-btn">Отправить</button>
+        </form>
+
+        <div class="message" id="responseMessage"></div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
