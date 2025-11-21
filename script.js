@@ -152,22 +152,14 @@ feedbackForm.addEventListener('submit', function(e) {
 
     // Сбор данных формы
     const formData = new FormData(feedbackForm);
-    const data = {
-        fullName: formData.get('fullName'),
-        email: formData.get('email'),
-        phone: formData.get('phone'),
-        organization: formData.get('organization'),
-        message: formData.get('message'),
-        privacyPolicy: formData.get('privacyPolicy')
-    };
 
-    // Отправка данных на сервер
-    fetch('https://formspree.io/f/xjvnnqjq', {
+    // Используем Formspree вместо Formcarry
+    fetch('https://formcarry.com/s/dBg2a470fh0', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Accept': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: formData
     })
     .then(response => {
         if (response.ok) {
@@ -175,7 +167,9 @@ feedbackForm.addEventListener('submit', function(e) {
             feedbackForm.reset();
             clearFormData();
         } else {
-            throw new Error('Ошибка отправки формы');
+            return response.json().then(err => {
+                throw new Error(err.error || 'Ошибка отправки формы');
+            });
         }
     })
     .catch(error => {
